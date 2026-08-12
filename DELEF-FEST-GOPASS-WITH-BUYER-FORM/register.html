@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>สมัครสมาชิก | DELEF FEST GOPASS</title>
+
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body class="login-page">
+
+    <section class="login-box form-box">
+
+        <h1>สมัครสมาชิก</h1>
+
+        <p>กรอกข้อมูลสำหรับรับบัตรคอนเสิร์ต</p>
+
+        <form onsubmit="registerUser(event)">
+
+            <label class="input-label">
+                <span>ชื่อ - นามสกุล</span>
+                <input id="name" required>
+            </label>
+
+            <label class="input-label">
+                <span>ชื่อDiscord</span>
+                <input id="discordName" required>
+            </label>
+
+            <label class="input-label">
+                <span>อีเมล</span>
+                <input id="email" type="email" required>
+            </label>
+
+            <button type="submit" class="btn red full">
+                ยืนยันการสมัคร
+            </button>
+
+        </form>
+
+    </section>
+
+    <script>
+        function registerUser(event) {
+            event.preventDefault();
+
+            localStorage.setItem(
+                "customerName",
+                document.getElementById("name").value
+            );
+
+            localStorage.setItem(
+                "customerPhone",
+                document.getElementById("phone").value
+            );
+
+            localStorage.setItem(
+                "customerEmail",
+                document.getElementById("email").value
+            );
+
+            location.href = "receipt.html";
+        }
+    </script>
+
+</body>
+
+</html>
