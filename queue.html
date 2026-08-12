@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>รอคิว | DELEF FEST GOPASS</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="wrap nav">
+
+            <a class="brand" href="index.html">
+                <img src="images/logo1.png">
+                <span>
+                    DELEF FEST
+                    <small>GOPASS</small>
+                </span>
+            </a>
+
+        </div>
+    </header>
+
+    <main class="wrap page narrow">
+
+        <section class="queue-box">
+
+            <div class="queue-icon">
+                <i class="fa-solid fa-hourglass-half"></i>
+            </div>
+
+            <span class="kicker">WAITING ROOM</span>
+
+            <h1>กำลังรอคิว</h1>
+
+            <p>หมายเลขคิวของคุณ</p>
+
+            <strong id="queueNo">#----</strong>
+
+            <div class="queue-stats">
+
+                <div>
+                    <i class="fa-solid fa-users"></i>
+                    <small>คนก่อนหน้า</small>
+                    <b id="ahead">----</b>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-clock"></i>
+                    <small>เวลาประมาณ</small>
+                    <b id="wait">-- นาที</b>
+                </div>
+
+            </div>
+
+            <div class="progress">
+                <div id="bar"></div>
+            </div>
+
+            <p id="queueStatus">ระบบกำลังจัดคิวให้คุณ</p>
+
+        </section>
+
+    </main>
+
+    <script>
+
+        const q = "#" + (Math.floor(Math.random() * 9000) + 1000);
+
+        document.getElementById("queueNo").textContent = q;
+
+        document.getElementById("ahead").textContent =
+            (Math.floor(Math.random() * 900) + 50).toLocaleString();
+
+        document.getElementById("wait").textContent =
+            (Math.floor(Math.random() * 8) + 1) + " นาที";
+
+        let p = 0;
+
+        const t = setInterval(() => {
+
+            p += 2.5;
+
+            document.getElementById("bar").style.width = p + "%";
+
+            if (p >= 100) {
+
+                clearInterval(t);
+
+                document.getElementById("queueStatus").textContent =
+                    "ถึงคิวแล้ว กำลังเข้าสู่หน้าซื้อบัตร...";
+
+                setTimeout(() => {
+                    location.href = "seat.html" + location.search;
+                }, 1200);
+
+            }
+
+        }, 300);
+
+    </script>
+
+</body>
+
+</html>

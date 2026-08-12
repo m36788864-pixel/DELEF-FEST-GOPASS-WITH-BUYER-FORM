@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>กรอกข้อมูลผู้ซื้อ | DELEF FEST GOPASS</title>
+<link rel="icon" href="images/logo1.png">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body class="login-page">
+<section class="login-box form-box">
+  <a class="brand center" href="index.html">
+    <img src="images/logo1.png"><span>DELEF FEST<small>GOPASS</small></span>
+  </a>
+
+  <div class="form-icon"><i class="fa-solid fa-user-pen"></i></div>
+  <h1>กรอกข้อมูลผู้ซื้อ</h1>
+  <p>กรอกข้อมูลให้ครบก่อนเข้าสู่ขั้นตอนกดบัตร</p>
+
+  <form id="buyerForm">
+    <label class="input-label">
+      <span><i class="fa-solid fa-envelope"></i> อีเมล</span>
+      <input id="email" type="email" placeholder="example@email.com" autocomplete="email" required>
+    </label>
+
+    <label class="input-label">
+      <span><i class="fa-brands fa-discord"></i> ชื่อ Discord</span>
+      <input id="discord" type="text" placeholder="เช่น delef_123" maxlength="50" required>
+    </label>
+
+    <label class="input-label">
+      <span><i class="fa-solid fa-gamepad"></i> ชื่อ Roblox</span>
+      <input id="roblox" type="text" placeholder="เช่น DELEF_Studio" maxlength="30" required>
+    </label>
+
+    <div class="form-note">
+      <i class="fa-solid fa-circle-info"></i>
+      ข้อมูลนี้ใช้สำหรับบันทึกข้อมูลผู้ซื้อและติดต่อเกี่ยวกับบัตร
+    </div>
+
+    <button class="btn red full" type="submit">
+      ดำเนินการต่อ <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </form>
+
+  <a href="index.html" class="back"><i class="fa-solid fa-arrow-left"></i> กลับหน้าแรก</a>
+</section>
+
+<script>
+document.getElementById("buyerForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const buyer = {
+    email: document.getElementById("email").value.trim(),
+    discord: document.getElementById("discord").value.trim(),
+    roblox: document.getElementById("roblox").value.trim(),
+    savedAt: new Date().toISOString()
+  };
+
+  localStorage.setItem("delef_buyer", JSON.stringify(buyer));
+
+  // ถ้ามีงานที่เลือกไว้ ให้ไปหน้าคิวของงานนั้น
+  const id = new URLSearchParams(location.search).get("id");
+  location.href = id ? "queue.html?id=" + encodeURIComponent(id) : "events.html";
+});
+</script>
+</body>
+</html>
